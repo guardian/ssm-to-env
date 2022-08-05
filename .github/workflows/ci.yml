@@ -44,6 +44,6 @@ jobs:
           app: ssm-to-env-lambda-example
           buildNumber: ${{ env.GITHUB_RUN_NUMBER }}
           projectName: playground::ssm-to-env-lambda-example
-          configPath: riff-raff.yaml
+          configPath: riff-raff.yml
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
