@@ -1,7 +1,7 @@
 regions: [eu-west-1]
 stacks: [playground]
 deployments:
-  ssm-to-env-lambda-example-lambda:
+  ssm-to-env-lambda-example:
     type: aws-lambda
     sources: [packages/lambda/dist/ssm-to-env-lambda-example.zip]
     dependencies: [cdk-cloudformation]
