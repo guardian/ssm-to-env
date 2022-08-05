@@ -7,7 +7,7 @@ deployments:
     dependencies: [cdk-cloudformation]
     parameters:
       prefixStack: false
-      bucket: playground-dist
+      bucketSsmLookup: true
       fileName: ssm-to-env-lambda-example.zip
       functionNames: [ssm-to-env-lambda-example-]
   cdk-cloudformation:
