@@ -1,0 +1,27 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "typecheck": "tsc -noEmit",
+    "build": "esbuild src/*.ts --bundle --outdir=dist --platform=node --target=node16 --external:aws-sdk",
+    "esbuild": "esbuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guardian/ssm-to-env-lambda-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guardian/ssm-to-env-lambda-example/issues"
+  },
+  "homepage": "https://github.com/guardian/ssm-to-env-lambda-example#readme",
+  "devDependencies": {
+    "esbuild": "^0.14.53",
+    "tsc": "^2.0.4"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1189.0"
+  }
+}
