@@ -1,3 +1,222 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The SsmToEnvLambdaExample stack matches the snapshot 1`] = `Object {}`;
+exports[`The SsmToEnvLambdaExample stack matches the snapshot 1`] = `
+Object {
+  "Parameters": Object {
+    "DistributionBucketName": Object {
+      "Default": "/account/services/artifact.bucket",
+      "Description": "SSM parameter containing the S3 bucket name holding distribution artifacts",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "ssmtoenvlambdaexample80E45003": Object {
+      "DependsOn": Array [
+        "ssmtoenvlambdaexampleServiceRoleDefaultPolicy4EA1D11C",
+        "ssmtoenvlambdaexampleServiceRoleC035002F",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "DistributionBucketName",
+          },
+          "S3Key": "playground/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-example.zip",
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "APP": "ssm-to-env-lambda-example",
+            "STACK": "playground",
+            "STAGE": "TEST",
+          },
+        },
+        "Handler": "index.handler",
+        "MemorySize": 512,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ssmtoenvlambdaexampleServiceRoleC035002F",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs16.x",
+        "Tags": Array [
+          Object {
+            "Key": "App",
+            "Value": "ssm-to-env-lambda-example",
+          },
+          Object {
+            "Key": "gu:cdk:version",
+            "Value": "47.0.0",
+          },
+          Object {
+            "Key": "gu:repo",
+            "Value": "guardian/ssm-to-env-lambda-example",
+          },
+          Object {
+            "Key": "Stack",
+            "Value": "playground",
+          },
+          Object {
+            "Key": "Stage",
+            "Value": "TEST",
+          },
+        ],
+        "Timeout": 30,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ssmtoenvlambdaexampleServiceRoleC035002F": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "App",
+            "Value": "ssm-to-env-lambda-example",
+          },
+          Object {
+            "Key": "gu:cdk:version",
+            "Value": "47.0.0",
+          },
+          Object {
+            "Key": "gu:repo",
+            "Value": "guardian/ssm-to-env-lambda-example",
+          },
+          Object {
+            "Key": "Stack",
+            "Value": "playground",
+          },
+          Object {
+            "Key": "Stage",
+            "Value": "TEST",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ssmtoenvlambdaexampleServiceRoleDefaultPolicy4EA1D11C": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::",
+                      Object {
+                        "Ref": "DistributionBucketName",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::",
+                      Object {
+                        "Ref": "DistributionBucketName",
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "ssm:GetParametersByPath",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:aws:ssm:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":parameter/TEST/playground/ssm-to-env-lambda-example",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "ssm:GetParameters",
+                "ssm:GetParameter",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:aws:ssm:",
+                    Object {
+                      "Ref": "AWS::Region",
+                    },
+                    ":",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":parameter/TEST/playground/ssm-to-env-lambda-example/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ssmtoenvlambdaexampleServiceRoleDefaultPolicy4EA1D11C",
+        "Roles": Array [
+          Object {
+            "Ref": "ssmtoenvlambdaexampleServiceRoleC035002F",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+}
+`;

@@ -18,8 +18,7 @@
   },
   "homepage": "https://github.com/guardian/ssm-to-env-lambda-example#readme",
   "devDependencies": {
-    "esbuild": "^0.14.53",
-    "tsc": "^2.0.4"
+    "esbuild": "^0.14.53"
   },
   "dependencies": {
     "aws-sdk": "^2.1189.0"
