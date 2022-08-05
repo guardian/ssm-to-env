@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+set -x
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ROOT_DIR="${DIR}/.."
@@ -12,5 +13,6 @@ npm run test
 npm run synth
 npm run build
 
-directory=$(dirname "$file")
-zip -FSjr "${directory}/ssm-to-env-lambda-example.zip" "index.js"
+dist_dir="${ROOT_DIR}/packages/lambda/dist"
+
+zip -FSjr "${dist_dir}/ssm-to-env-lambda-example.zip" "${dist_dir}/index.js"
