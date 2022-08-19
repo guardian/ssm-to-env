@@ -5,19 +5,21 @@ args=("$@")
 
 prefix="${SSM_PATH_PREFIX}"
 
+name=$(basename $0)
+
 # Get architecture so we can choose the correct binary
 arch=$(uname | tr '[:upper:]' '[:lower:]')
 
 # Write env vars to temporary file
-./nest-secrets-${arch}-amd64 --prefix ${prefix} > tmp.env
+./nest-secrets-${arch}-amd64 --prefix ${prefix} > /tmp/${name}.env
 
 # Export all the values to env vars
 set -o allexport
-source tmp.env
+source /tmp/${name}.env
 set +o allexport
 
 # Clean up
-rm tmp.env
+rm /tmp/${name}.env
 
 # Execute the next step
 exec ${args[@]}
