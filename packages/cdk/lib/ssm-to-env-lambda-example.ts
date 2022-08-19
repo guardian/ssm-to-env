@@ -24,7 +24,7 @@ export class SsmToEnvLambdaExample extends GuStack {
 
 		const keyPrefix = `${this.stack}/${this.stage}/${props.app}`;
 
-		const getSecretsLayer = new LayerVersion(this, 'get-secrets-layer', {
+		const getSecretsLayer = new LayerVersion(this, 'get-secrets-layer-v2', {
 			code: Code.fromBucket(
 				bucket,
 				`${keyPrefix}/ssm-to-env-lambda-layer-example.zip`,

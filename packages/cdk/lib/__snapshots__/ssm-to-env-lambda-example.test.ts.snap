@@ -10,7 +10,7 @@ Object {
     },
   },
   "Resources": Object {
-    "getsecretslayer63FFACD4": Object {
+    "getsecretslayerv22AB2747B": Object {
       "Properties": Object {
         "Content": Object {
           "S3Bucket": Object {
@@ -45,7 +45,7 @@ Object {
         "Handler": "index.handler",
         "Layers": Array [
           Object {
-            "Ref": "getsecretslayer63FFACD4",
+            "Ref": "getsecretslayerv22AB2747B",
           },
         ],
         "MemorySize": 512,
