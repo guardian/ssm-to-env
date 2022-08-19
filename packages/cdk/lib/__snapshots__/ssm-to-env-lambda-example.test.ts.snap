@@ -10,6 +10,18 @@ Object {
     },
   },
   "Resources": Object {
+    "getsecretslayer63FFACD4": Object {
+      "Properties": Object {
+        "Content": Object {
+          "S3Bucket": Object {
+            "Ref": "DistributionBucketName",
+          },
+          "S3Key": "playground/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-layer-example.zip",
+        },
+        "Description": "This layer is used to pull config from SSM and convert to environmental variables",
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
     "ssmtoenvlambdaexample80E45003": Object {
       "DependsOn": Array [
         "ssmtoenvlambdaexampleServiceRoleDefaultPolicy4EA1D11C",
@@ -25,11 +37,17 @@ Object {
         "Environment": Object {
           "Variables": Object {
             "APP": "ssm-to-env-lambda-example",
+            "AWS_LAMBDA_EXEC_WRAPPER": "/opt/ssm-to-env.sh",
             "STACK": "playground",
             "STAGE": "TEST",
           },
         },
         "Handler": "index.handler",
+        "Layers": Array [
+          Object {
+            "Ref": "getsecretslayer63FFACD4",
+          },
+        ],
         "MemorySize": 512,
         "Role": Object {
           "Fn::GetAtt": Array [

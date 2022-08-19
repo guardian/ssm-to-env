@@ -6,4 +6,5 @@ const app = new App();
 new SsmToEnvLambdaExample(app, 'SsmToEnvLambdaExample-CODE', {
 	stack: 'playground',
 	stage: 'CODE',
+	app: 'ssm-to-env-lambda-example',
 });
