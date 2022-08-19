@@ -19,8 +19,11 @@ jobs:
       # required by aws-actions/configure-aws-credentials
       id-token: write
       contents: read
+    # Checkout submodules as we're including nest-secrets
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
       # Setup AWS credentials to enable uploading to S3 for Riff-Raff.
       # See https://github.com/aws-actions/configure-aws-credentials
@@ -34,6 +37,10 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
+
+      - uses: actions/setup-go@v3
+        with:
+          go-version-file: 'nest-secrets/go.mod'
 
       - name: Run script/ci
         run: ./script/ci.sh

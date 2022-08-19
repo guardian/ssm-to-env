@@ -24,11 +24,14 @@ export class SsmToEnvLambdaExample extends GuStack {
 
 		const keyPrefix = `${this.stack}/${this.stage}/${props.app}`;
 
-		const getSecretsLayer = new LayerVersion(this, 'get-secrets-layer-v2', {
+		const getSecretsLayer = new LayerVersion(this, 'get-secrets-layer', {
 			code: Code.fromBucket(
 				bucket,
 				`${keyPrefix}/ssm-to-env-lambda-layer-example.zip`,
 			),
+			layerVersionName: `ssm-to-env-layer-${Math.floor(
+				new Date().getTime() / 1000,
+			)}`,
 			description:
 				'This layer is used to pull config from SSM and convert to environmental variables',
 		});
@@ -40,6 +43,7 @@ export class SsmToEnvLambdaExample extends GuStack {
 			handler: 'index.handler',
 			environment: {
 				AWS_LAMBDA_EXEC_WRAPPER: '/opt/ssm-to-env.sh',
+				SSM_PATH_PREFIX: '/CODE/playground/ssm-to-env-lambda-example',
 			},
 			layers: [getSecretsLayer],
 		});
