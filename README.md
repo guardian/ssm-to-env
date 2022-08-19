@@ -11,11 +11,3 @@ Lambda layers can be provisioned using [AWS CDK](https://github.com/aws-samples/
 Layers can be made accessible [between AWS accounts](https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountlayer).
 
 Lambda layers can specify their compatible runtimes & architectures in their configuration. Scripts or executables in layers can be triggered using a [runtime wrapper script](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-modify.html#runtime-wrapper) by adding a [`AWS_LAMBDA_EXEC_WRAPPER` environment variable to your lambda configuration](https://github.com/aws-samples/aws-lambda-environmental-variables-from-aws-secrets-manager/blob/b8360682026ab6f4c3f48e61a9e342a3fd3b3c06/cdk/lib/cdk-stack.ts#L64), containing the path to your wrapper script in the included layer.
-
-## TODO
-
-- Package a simple wrapper script in a layer
-- Work out how do you deploy lambda layers with riff-raff?
-- Reference the deployed simple wrapper script in this lambda and show it is called
-- Fork nest-secrets into a wrappable format for a lambda-layer and deploy
-- Update this repository to use the more complex layer, and demonstrate that works.
