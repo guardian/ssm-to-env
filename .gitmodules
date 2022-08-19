@@ -1,0 +1,4 @@
+[submodule "nest-secrets"]
+	path = nest-secrets
+	url = git@github.com:guardian/nest-secrets.git
+	branch = quotes-n-hyphens

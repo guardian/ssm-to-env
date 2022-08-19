@@ -1,5 +1,6 @@
 export const handler = async (): Promise<void> => {
-	console.log('hello world');
+	const varFromWrapper = process.env['test_output'] ?? 'unset';
+	console.log(`hello world: ${varFromWrapper}`);
 
 	await Promise.resolve();
 };
