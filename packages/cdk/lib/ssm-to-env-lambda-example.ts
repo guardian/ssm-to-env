@@ -10,6 +10,7 @@ import { Bucket } from 'aws-cdk-lib/aws-s3';
 
 interface SsmToEnvLambdaStackProps extends GuStackProps {
 	app: string;
+	vary: string;
 }
 
 export class SsmToEnvLambdaExample extends GuStack {
@@ -29,9 +30,7 @@ export class SsmToEnvLambdaExample extends GuStack {
 				bucket,
 				`${keyPrefix}/ssm-to-env-lambda-layer-example.zip`,
 			),
-			layerVersionName: `ssm-to-env-layer-${Math.floor(
-				new Date().getTime() / 1000,
-			)}`,
+			layerVersionName: `ssm-to-env-layer-${props.vary}`,
 			description:
 				'This layer is used to pull config from SSM and convert to environmental variables',
 		});

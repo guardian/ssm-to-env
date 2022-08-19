@@ -7,4 +7,5 @@ new SsmToEnvLambdaExample(app, 'SsmToEnvLambdaExample-CODE', {
 	stack: 'playground',
 	stage: 'CODE',
 	app: 'ssm-to-env-lambda-example',
+	vary: `${Math.floor(new Date().getTime() / 1000)}`,
 });

@@ -9,6 +9,7 @@ describe('The SsmToEnvLambdaExample stack', () => {
 			stack: 'playground',
 			stage: 'TEST',
 			app: 'ssm-to-env-lambda-example',
+			vary: 'nope',
 		});
 		const template = Template.fromStack(stack);
 		expect(template.toJSON()).toMatchSnapshot();

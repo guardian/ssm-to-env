@@ -19,7 +19,7 @@ Object {
           "S3Key": "playground/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-layer-example.zip",
         },
         "Description": "This layer is used to pull config from SSM and convert to environmental variables",
-        "LayerName": "ssm-to-env-layer-1660921293",
+        "LayerName": "ssm-to-env-layer-nope",
       },
       "Type": "AWS::Lambda::LayerVersion",
     },
