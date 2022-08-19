@@ -18,10 +18,9 @@ deployments:
     actions:
       - updateLambda
     parameters:
-      prefixStack: false
       bucketSsmLookup: true
       fileName: ssm-to-env-lambda-example.zip
-      functionNames: [ssm-to-env-lambda-example-]
+      lookupByTags: true
   cdk-cloudformation:
     type: cloud-formation
     sources:
