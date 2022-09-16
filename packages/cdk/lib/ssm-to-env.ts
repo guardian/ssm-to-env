@@ -1,6 +1,7 @@
 import {
 	GuDistributionBucketParameter,
 	GuStack,
+	GuStringParameter,
 } from '@guardian/cdk/lib/constructs/core';
 import type { GuStackProps } from '@guardian/cdk/lib/constructs/core';
 import { GuLambdaFunction } from '@guardian/cdk/lib/constructs/lambda';
@@ -23,6 +24,7 @@ export class SsmToEnv extends GuStack {
 			GuDistributionBucketParameter.getInstance(this).valueAsString,
 		);
 
+		const paramPathBase = `/${this.stage}/${this.stack}/ssm-to-env`;
 		const keyPrefix = `${this.stack}/${this.stage}/${props.app}`;
 
 		const getSecretsLayer = new LayerVersion(this, 'get-secrets-layer', {
@@ -32,14 +34,27 @@ export class SsmToEnv extends GuStack {
 				'This layer is used to pull config from SSM and convert to environmental variables',
 		});
 
-		new GuLambdaFunction(this, 'ssm-to-env-lambda-example', {
-			app: 'ssm-to-env-lambda-example',
+		const organizationId = new GuStringParameter(this, 'organization-id', {
+			default: `${paramPathBase}/organization-id`,
+			description:
+				'(From SSM) The AWS organization id with which to share this layer',
+			fromSSM: true,
+		});
+
+		getSecretsLayer.addPermission('remote-account-grant', {
+			accountId: '*',
+			organizationId: organizationId.valueAsString,
+		});
+
+		const lambdaName = 'ssm-to-env-lambda-example';
+		new GuLambdaFunction(this, lambdaName, {
+			app: 'ssm-to-env',
 			fileName: 'ssm-to-env-lambda-example.zip',
 			runtime: Runtime.NODEJS_16_X,
 			handler: 'index.handler',
 			environment: {
 				AWS_LAMBDA_EXEC_WRAPPER: '/opt/ssm-to-env.sh',
-				SSM_PATH_PREFIX: '/CODE/playground/ssm-to-env-lambda-example',
+				SSM_PATH_PREFIX: `/${this.stage}/${this.stack}/${lambdaName}`,
 			},
 			layers: [getSecretsLayer],
 		});
