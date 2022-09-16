@@ -8,6 +8,10 @@ node_modules
 dist
 .DS_Store
 
+# Exclude go binaries
+wrapper-script/nest-secrets-*
+
+
 # CDK asset staging directory
 .cdk.staging
 cdk.out

@@ -28,4 +28,4 @@ popd
 
 cp ${ROOT_DIR}/nest-secrets/bin/* ${layer_dist_dir}
 
-zip -FSjr "${layer_dist_dir}/ssm-to-env-lambda-layer-example.zip" "${layer_dist_dir}"
+zip -FSjr "${layer_dist_dir}/ssm-to-env.zip" "${layer_dist_dir}"

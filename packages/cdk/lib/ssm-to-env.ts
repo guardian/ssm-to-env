@@ -8,13 +8,13 @@ import type { App } from 'aws-cdk-lib';
 import { Code, LayerVersion, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 
-interface SsmToEnvLambdaStackProps extends GuStackProps {
+interface SsmToEnvStackProps extends GuStackProps {
 	app: string;
 	vary: string;
 }
 
-export class SsmToEnvLambdaExample extends GuStack {
-	constructor(scope: App, id: string, props: SsmToEnvLambdaStackProps) {
+export class SsmToEnv extends GuStack {
+	constructor(scope: App, id: string, props: SsmToEnvStackProps) {
 		super(scope, id, props);
 
 		const bucket = Bucket.fromBucketName(

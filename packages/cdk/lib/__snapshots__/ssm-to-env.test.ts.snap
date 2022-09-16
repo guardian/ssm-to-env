@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The SsmToEnvLambdaExample stack matches the snapshot 1`] = `
+exports[`The SsmToEnv stack matches the snapshot 1`] = `
 Object {
   "Parameters": Object {
     "DistributionBucketName": Object {

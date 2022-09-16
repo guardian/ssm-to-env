@@ -1,11 +1,11 @@
 import 'source-map-support/register';
 import { App } from 'aws-cdk-lib';
-import { SsmToEnvLambdaExample } from '../lib/ssm-to-env-lambda-example';
+import { SsmToEnv } from '../lib/ssm-to-env';
 
 const app = new App();
-new SsmToEnvLambdaExample(app, 'SsmToEnvLambdaExample-CODE', {
+new SsmToEnv(app, 'SsmToEnv-CODE', {
 	stack: 'playground',
 	stage: 'CODE',
-	app: 'ssm-to-env-lambda-example',
+	app: 'ssm-to-env',
 	vary: `${Math.floor(new Date().getTime() / 1000)}`,
 });

@@ -1,11 +1,11 @@
 import { App } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
-import { SsmToEnvLambdaExample } from './ssm-to-env-lambda-example';
+import { SsmToEnv } from './ssm-to-env';
 
-describe('The SsmToEnvLambdaExample stack', () => {
+describe('The SsmToEnv stack', () => {
 	it('matches the snapshot', () => {
 		const app = new App();
-		const stack = new SsmToEnvLambdaExample(app, 'SsmToEnvLambdaExample', {
+		const stack = new SsmToEnv(app, 'SsmToEnv', {
 			stack: 'playground',
 			stage: 'TEST',
 			app: 'ssm-to-env-lambda-example',
