@@ -1,8 +1,20 @@
-# ssm-to-env-lambda-example
+# ssm-to-env
 
 **WARNING:** This is a work in progress.
 
-This repository is intended to test including a [lambda layer]() as a mechanism to pull configuration from from an SSM prefix and make it available as environment variables within the lambda.
+This repository contains an [AWS Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) which pulls configuration from an SSM prefix and makes it available as environment variables within the lambda.
+
+It does this by adding the [guardian/nest-secrets](https://github.com/guardian/nest-secrets) application to your lambda, and uses the `SSM_PATH_PREFIX` environment variable as the SSM prefix to look up.
+
+## How to use
+
+...
+
+## How to develop
+
+...
+
+## Notes
 
 This approach hopes to combine this [AWS layer example](https://github.com/aws-samples/aws-lambda-environmental-variables-from-aws-secrets-manager), with some of the functionality of [guardian/nest-secrets](https://github.com/guardian/nest-secrets).
 

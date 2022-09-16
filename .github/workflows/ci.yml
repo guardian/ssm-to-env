@@ -48,9 +48,8 @@ jobs:
       - name: Upload to riff-raff
         uses: guardian/actions-riff-raff@v1
         with:
-          app: ssm-to-env-lambda-example
           buildNumber: ${{ env.GITHUB_RUN_NUMBER }}
-          projectName: playground::ssm-to-env-lambda-example
+          projectName: deploy::ssm-to-env
           configPath: riff-raff.yml
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'

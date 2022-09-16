@@ -1,11 +1,18 @@
 import 'source-map-support/register';
 import { App } from 'aws-cdk-lib';
-import { SsmToEnvLambdaExample } from '../lib/ssm-to-env-lambda-example';
+import { SsmToEnv } from '../lib/ssm-to-env';
 
 const app = new App();
-new SsmToEnvLambdaExample(app, 'SsmToEnvLambdaExample-CODE', {
-	stack: 'playground',
-	stage: 'CODE',
-	app: 'ssm-to-env-lambda-example',
-	vary: `${Math.floor(new Date().getTime() / 1000)}`,
+const stages = ['CODE', 'PROD'];
+
+// This value is used to ensure re-deployment of the lambda layer on each build
+const vary = `${Math.floor(new Date().getTime() / 1000)}`;
+
+stages.map((stage: string) => {
+	new SsmToEnv(app, `SsmToEnv-${stage}`, {
+		stack: 'deploy',
+		stage: stage,
+		app: 'ssm-to-env',
+		vary: vary,
+	});
 });

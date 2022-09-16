@@ -1,11 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The SsmToEnvLambdaExample stack matches the snapshot 1`] = `
+exports[`The SsmToEnv stack matches the snapshot 1`] = `
 Object {
   "Parameters": Object {
     "DistributionBucketName": Object {
       "Default": "/account/services/artifact.bucket",
       "Description": "SSM parameter containing the S3 bucket name holding distribution artifacts",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+    "organizationid": Object {
+      "Default": "/TEST/deploy/ssm-to-env/organization-id",
+      "Description": "(From SSM) The AWS organization id with which to share this layer",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
@@ -16,12 +21,25 @@ Object {
           "S3Bucket": Object {
             "Ref": "DistributionBucketName",
           },
-          "S3Key": "playground/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-layer-example.zip",
+          "S3Key": "deploy/TEST/ssm-to-env/ssm-to-env.zip",
         },
         "Description": "This layer is used to pull config from SSM and convert to environmental variables",
         "LayerName": "ssm-to-env-layer-nope",
       },
       "Type": "AWS::Lambda::LayerVersion",
+    },
+    "getsecretslayerremoteaccountgrantC876FA0C": Object {
+      "Properties": Object {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": Object {
+          "Ref": "getsecretslayer63FFACD4",
+        },
+        "OrganizationId": Object {
+          "Ref": "organizationid",
+        },
+        "Principal": "*",
+      },
+      "Type": "AWS::Lambda::LayerVersionPermission",
     },
     "ssmtoenvlambdaexample80E45003": Object {
       "DependsOn": Array [
@@ -33,14 +51,14 @@ Object {
           "S3Bucket": Object {
             "Ref": "DistributionBucketName",
           },
-          "S3Key": "playground/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-example.zip",
+          "S3Key": "deploy/TEST/ssm-to-env/ssm-to-env-lambda-example.zip",
         },
         "Environment": Object {
           "Variables": Object {
-            "APP": "ssm-to-env-lambda-example",
+            "APP": "ssm-to-env",
             "AWS_LAMBDA_EXEC_WRAPPER": "/opt/ssm-to-env.sh",
-            "SSM_PATH_PREFIX": "/CODE/playground/ssm-to-env-lambda-example",
-            "STACK": "playground",
+            "SSM_PATH_PREFIX": "/TEST/deploy/ssm-to-env",
+            "STACK": "deploy",
             "STAGE": "TEST",
           },
         },
@@ -61,7 +79,7 @@ Object {
         "Tags": Array [
           Object {
             "Key": "App",
-            "Value": "ssm-to-env-lambda-example",
+            "Value": "ssm-to-env",
           },
           Object {
             "Key": "gu:cdk:version",
@@ -69,11 +87,11 @@ Object {
           },
           Object {
             "Key": "gu:repo",
-            "Value": "guardian/ssm-to-env-lambda-example",
+            "Value": "guardian/ssm-to-env",
           },
           Object {
             "Key": "Stack",
-            "Value": "playground",
+            "Value": "deploy",
           },
           Object {
             "Key": "Stage",
@@ -115,7 +133,7 @@ Object {
         "Tags": Array [
           Object {
             "Key": "App",
-            "Value": "ssm-to-env-lambda-example",
+            "Value": "ssm-to-env",
           },
           Object {
             "Key": "gu:cdk:version",
@@ -123,11 +141,11 @@ Object {
           },
           Object {
             "Key": "gu:repo",
-            "Value": "guardian/ssm-to-env-lambda-example",
+            "Value": "guardian/ssm-to-env",
           },
           Object {
             "Key": "Stack",
-            "Value": "playground",
+            "Value": "deploy",
           },
           Object {
             "Key": "Stage",
@@ -197,7 +215,7 @@ Object {
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/TEST/playground/ssm-to-env-lambda-example",
+                    ":parameter/TEST/deploy/ssm-to-env",
                   ],
                 ],
               },
@@ -220,7 +238,7 @@ Object {
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/TEST/playground/ssm-to-env-lambda-example/*",
+                    ":parameter/TEST/deploy/ssm-to-env/*",
                   ],
                 ],
               },
