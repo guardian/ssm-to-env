@@ -7,7 +7,7 @@ args=("$@")
 prefix="${SSM_PATH_PREFIX}"
 
 # The name of this script
-name=$(basename $0)
+name=$(basename $0 .sh)
 
 # The full path to this script
 fullPath="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"

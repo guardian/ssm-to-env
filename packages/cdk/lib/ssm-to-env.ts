@@ -48,13 +48,13 @@ export class SsmToEnv extends GuStack {
 
 		const lambdaName = 'ssm-to-env-lambda-example';
 		new GuLambdaFunction(this, lambdaName, {
-			app: 'ssm-to-env',
+			app: props.app,
 			fileName: 'ssm-to-env-lambda-example.zip',
 			runtime: Runtime.NODEJS_16_X,
 			handler: 'index.handler',
 			environment: {
 				AWS_LAMBDA_EXEC_WRAPPER: '/opt/ssm-to-env.sh',
-				SSM_PATH_PREFIX: `/${this.stage}/${this.stack}/${lambdaName}`,
+				SSM_PATH_PREFIX: `/${this.stage}/${this.stack}/${props.app}`,
 			},
 			layers: [getSecretsLayer],
 		});

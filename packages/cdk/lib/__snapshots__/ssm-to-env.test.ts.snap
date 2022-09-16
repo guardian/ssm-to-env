@@ -57,7 +57,7 @@ Object {
           "Variables": Object {
             "APP": "ssm-to-env",
             "AWS_LAMBDA_EXEC_WRAPPER": "/opt/ssm-to-env.sh",
-            "SSM_PATH_PREFIX": "/TEST/deploy/ssm-to-env-lambda-example",
+            "SSM_PATH_PREFIX": "/TEST/deploy/ssm-to-env",
             "STACK": "deploy",
             "STAGE": "TEST",
           },
