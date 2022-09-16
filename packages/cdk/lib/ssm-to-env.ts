@@ -26,10 +26,7 @@ export class SsmToEnv extends GuStack {
 		const keyPrefix = `${this.stack}/${this.stage}/${props.app}`;
 
 		const getSecretsLayer = new LayerVersion(this, 'get-secrets-layer', {
-			code: Code.fromBucket(
-				bucket,
-				`${keyPrefix}/ssm-to-env-lambda-layer-example.zip`,
-			),
+			code: Code.fromBucket(bucket, `${keyPrefix}/ssm-to-env.zip`),
 			layerVersionName: `ssm-to-env-layer-${props.vary}`,
 			description:
 				'This layer is used to pull config from SSM and convert to environmental variables',

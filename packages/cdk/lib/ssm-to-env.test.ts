@@ -6,9 +6,9 @@ describe('The SsmToEnv stack', () => {
 	it('matches the snapshot', () => {
 		const app = new App();
 		const stack = new SsmToEnv(app, 'SsmToEnv', {
-			stack: 'playground',
+			stack: 'deploy',
 			stage: 'TEST',
-			app: 'ssm-to-env-lambda-example',
+			app: 'ssm-to-env',
 			vary: 'nope',
 		});
 		const template = Template.fromStack(stack);

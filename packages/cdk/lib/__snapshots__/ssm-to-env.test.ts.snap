@@ -16,7 +16,7 @@ Object {
           "S3Bucket": Object {
             "Ref": "DistributionBucketName",
           },
-          "S3Key": "playground/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-layer-example.zip",
+          "S3Key": "deploy/TEST/ssm-to-env/ssm-to-env.zip",
         },
         "Description": "This layer is used to pull config from SSM and convert to environmental variables",
         "LayerName": "ssm-to-env-layer-nope",
@@ -33,14 +33,14 @@ Object {
           "S3Bucket": Object {
             "Ref": "DistributionBucketName",
           },
-          "S3Key": "playground/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-example.zip",
+          "S3Key": "deploy/TEST/ssm-to-env-lambda-example/ssm-to-env-lambda-example.zip",
         },
         "Environment": Object {
           "Variables": Object {
             "APP": "ssm-to-env-lambda-example",
             "AWS_LAMBDA_EXEC_WRAPPER": "/opt/ssm-to-env.sh",
             "SSM_PATH_PREFIX": "/CODE/playground/ssm-to-env-lambda-example",
-            "STACK": "playground",
+            "STACK": "deploy",
             "STAGE": "TEST",
           },
         },
@@ -73,7 +73,7 @@ Object {
           },
           Object {
             "Key": "Stack",
-            "Value": "playground",
+            "Value": "deploy",
           },
           Object {
             "Key": "Stage",
@@ -127,7 +127,7 @@ Object {
           },
           Object {
             "Key": "Stack",
-            "Value": "playground",
+            "Value": "deploy",
           },
           Object {
             "Key": "Stage",
@@ -197,7 +197,7 @@ Object {
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/TEST/playground/ssm-to-env-lambda-example",
+                    ":parameter/TEST/deploy/ssm-to-env-lambda-example",
                   ],
                 ],
               },
@@ -220,7 +220,7 @@ Object {
                     Object {
                       "Ref": "AWS::AccountId",
                     },
-                    ":parameter/TEST/playground/ssm-to-env-lambda-example/*",
+                    ":parameter/TEST/deploy/ssm-to-env-lambda-example/*",
                   ],
                 ],
               },
