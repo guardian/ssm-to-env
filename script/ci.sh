@@ -9,7 +9,8 @@ ARCH="linux-amd64"
 
 RELEASE_VERSION=1.4.0
 GH_BASE_PATH="https://github.com/guardian/nest-secrets/releases/download"
-BINARY_LOCATION="${GH_BASE_PATH}/v${RELEASE_VERSION}/nest-secrets-${ARCH}"
+BINARY_NAME="nest-secrets-${ARCH}"
+BINARY_LOCATION="${GH_BASE_PATH}/v${RELEASE_VERSION}/${BINARY_NAME}}"
 
 npm ci
 npm run typecheck
@@ -27,7 +28,8 @@ layer_dist_dir="${ROOT_DIR}/wrapper-script"
 
 # Download binaries from nest-secrets GitHub release
 pushd ${layer_dist_dir}
-    wget $BINARY_LOCATION
+    wget -O $BINARY_NAME $BINARY_LOCATION
 popd
 
+# Compress the lambda layer package as a deployable asset
 zip -FSjr "${layer_dist_dir}/ssm-to-env.zip" "${layer_dist_dir}"
