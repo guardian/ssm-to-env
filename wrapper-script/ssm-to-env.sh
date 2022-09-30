@@ -12,11 +12,11 @@ name=$(basename $0 .sh)
 # The full path to this script
 fullPath="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-# Get architecture so we can choose the correct binary
-arch=$(uname | tr '[:upper:]' '[:lower:]')
+# Allow the arch to be handed in
+arch=${arch:-linux-amd64}
 
 # Write env vars to temporary file
-${fullPath}/nest-secrets-${arch}-amd64 --prefix ${prefix} > /tmp/${name}.env
+${fullPath}/nest-secrets-${arch} --prefix ${prefix} > /tmp/${name}.env
 
 # Export all the values to env vars
 set -o allexport
@@ -28,5 +28,3 @@ rm /tmp/${name}.env
 
 # Execute the next step
 exec ${args[@]}
-
-
