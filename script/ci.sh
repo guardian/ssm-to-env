@@ -10,7 +10,7 @@ ARCH="linux-amd64"
 RELEASE_VERSION=1.4.0
 GH_BASE_PATH="https://github.com/guardian/nest-secrets/releases/download"
 BINARY_NAME="nest-secrets-${ARCH}"
-BINARY_LOCATION="${GH_BASE_PATH}/v${RELEASE_VERSION}/${BINARY_NAME}}"
+BINARY_LOCATION="${GH_BASE_PATH}/v${RELEASE_VERSION}/${BINARY_NAME}"
 
 npm ci
 npm run typecheck
