@@ -38,10 +38,6 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - uses: actions/setup-go@v3
-        with:
-          go-version-file: 'nest-secrets/go.mod'
-
       - name: Run script/ci
         run: ./script/ci.sh
 
