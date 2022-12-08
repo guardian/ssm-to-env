@@ -3,7 +3,6 @@ stacks: [deploy]
 deployments:
   layer-deployment-test:
     type: aws-lambda-layer
-    dependencies: [cdk-cloudformation]
     actions:
       - updateLambda
     parameters:
