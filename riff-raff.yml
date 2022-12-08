@@ -4,7 +4,7 @@ deployments:
   layer-deployment-test:
     type: aws-lambda-layer
     actions:
-      - updateLambda
+      - updateLayer
     parameters:
       bucketSsmLookup: true
       fileName: ssm-to-env-lambda-example.zip
