@@ -1,34 +1,12 @@
 regions: [eu-west-1]
 stacks: [deploy]
 deployments:
-  lambda-to-s3:
-    type: aws-s3
-    app: ssm-to-env
-    sources:
-      - packages/lambda/dist/ssm-to-env-lambda-example.zip
-      - wrapper-script/ssm-to-env.zip
-    parameters:
-      bucket: deploy-tools-dist
-      cacheControl: no-cache
-      publicReadAcl: false
-      prefixApp: true
-  ssm-to-env:
-    type: aws-lambda
+  layer-deployment-test:
+    type: aws-lambda-layer
     dependencies: [cdk-cloudformation]
     actions:
       - updateLambda
     parameters:
       bucketSsmLookup: true
       fileName: ssm-to-env-lambda-example.zip
-      lookupByTags: true
-  cdk-cloudformation:
-    type: cloud-formation
-    sources:
-      - packages/cdk/cdk.out/SsmToEnv-CODE.template.json
-    app: ssm-to-env
-    parameters:
-      prependStackToCloudFormationStackName: false
-      cloudFormationStackName: ssm-to-env
-      templateStagePaths:
-        CODE: SsmToEnv-CODE.template.json
-      cloudFormationStackByTags: false
+      layerNames: ssm-to-env-layer-1664544948
