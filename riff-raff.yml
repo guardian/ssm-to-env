@@ -3,7 +3,7 @@ stacks: [deploy]
 deployments:
   ssm-to-env:
     type: aws-lambda-layer
-    dependencies: [cdk-cloudformation]
+    dependencies: [cloudformation]
     actions:
       - uploadLayer
       - updateLayer
@@ -12,17 +12,15 @@ deployments:
       layerName: ssm-to-env-layer
   ssm-to-env-lambda-example:
     type: aws-lambda
-    dependencies: [cdk-cloudformation, aws-lambda-layer]
+    dependencies: [cloudformation, ssm-to-env]
     actions:
       - uploadLambda
       - updateLambda
     parameters:
       fileName: ssm-to-env-lambda-example.zip
       lookupByTags: true
-  cdk-cloudformation:
+  cloudformation:
     type: cloud-formation
-    sources:
-      - packages/cdk/cdk.out/SsmToEnv-CODE.template.json
     app: ssm-to-env
     parameters:
       prependStackToCloudFormationStackName: false

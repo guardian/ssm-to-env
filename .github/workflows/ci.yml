@@ -52,5 +52,7 @@ jobs:
               - wrapper-script/ssm-to-env.zip
             ssm-to-env-lambda-example:
               - packages/lambda/dist/ssm-to-env-lambda-example.zip
+            cloudformation:
+              - packages/cdk/cdk.out/SsmToEnv-CODE.template.json
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
