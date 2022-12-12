@@ -50,5 +50,7 @@ jobs:
           contentDirectories: |
             ssm-to-env:
               - wrapper-script/ssm-to-env.zip
+            ssm-to-env-lambda-example:
+              - packages/lambda/dist/ssm-to-env-lambda-example.zip
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'

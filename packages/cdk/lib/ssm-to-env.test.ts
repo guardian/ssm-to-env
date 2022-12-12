@@ -9,7 +9,6 @@ describe('The SsmToEnv stack', () => {
 			stack: 'deploy',
 			stage: 'TEST',
 			app: 'ssm-to-env',
-			vary: 'nope',
 		});
 		const template = Template.fromStack(stack);
 		expect(template.toJSON()).toMatchSnapshot();
