@@ -4,6 +4,7 @@ deployments:
   layer-deployment-test:
     type: aws-lambda-layer
     actions:
+      - uploadLayer
       - updateLayer
     parameters:
       bucketSsmLookup: true
