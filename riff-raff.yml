@@ -9,4 +9,4 @@ deployments:
     parameters:
       bucketSsmLookup: true
       fileName: ssm-to-env.zip
-      layerNames: ssm-to-env-layer-1664544948
+      layerName: ssm-to-env-layer-1664544948
