@@ -1,7 +1,7 @@
 regions: [eu-west-1]
 stacks: [deploy]
 deployments:
-  layer-deployment-test:
+  ssm-to-env:
     type: aws-lambda-layer
     actions:
       - uploadLayer
