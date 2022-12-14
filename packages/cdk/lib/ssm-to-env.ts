@@ -11,7 +11,6 @@ import { Bucket } from 'aws-cdk-lib/aws-s3';
 
 interface SsmToEnvStackProps extends GuStackProps {
 	app: string;
-	vary: string;
 }
 
 export class SsmToEnv extends GuStack {
@@ -29,7 +28,7 @@ export class SsmToEnv extends GuStack {
 
 		const getSecretsLayer = new LayerVersion(this, 'get-secrets-layer', {
 			code: Code.fromBucket(bucket, `${keyPrefix}/ssm-to-env.zip`),
-			layerVersionName: `ssm-to-env-layer-${props.vary}`,
+			layerVersionName: `ssm-to-env-layer`,
 			description:
 				'This layer is used to pull config from SSM and convert to environmental variables',
 		});
@@ -48,7 +47,7 @@ export class SsmToEnv extends GuStack {
 
 		const lambdaName = 'ssm-to-env-lambda-example';
 		new GuLambdaFunction(this, lambdaName, {
-			app: props.app,
+			app: 'ssm-to-env-lambda-example',
 			fileName: 'ssm-to-env-lambda-example.zip',
 			runtime: Runtime.NODEJS_16_X,
 			handler: 'index.handler',
